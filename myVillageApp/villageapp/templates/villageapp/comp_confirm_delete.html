@@ -1,0 +1,34 @@
+{% extends 'villageapp/base.html' %}
+{% load static %}
+
+{% block content%}
+
+<header class="container-fluid my-3 h3 text-center d-flex align-items-center justify-content-center">
+  <img src="{% static 'villageapp/images/logo.png' %}" style="width: 5rem; height: 5rem;" class="mx-5">
+  <p>Rajiv Nagar Jhiri Complaint Portal</p>
+</header>
+<div class="content-section container">
+
+  <div class="container  m-3 p-2">
+    <form action="" method="POST">
+    
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4 alert alert-danger">Delete Complaint</legend>
+        <h5 class="text-info">Are you sure to delete ...  ??  </h5>
+         {% comment %} <a  href="{% url 'notif_detail' object.id %}" class="mx-3 border-bottom text-warning ">{{object.title}}</a> {% endcomment %}
+      </fieldset>
+      <div class="my-2 form-group">
+           <input type="submit" class="btn btn-outline-danger" value="Yes , Delete"/>
+           <a class="btn btn-outline-success" href="{% url 'comp_detail' object.id %}">Cancel</a>
+      </div>
+   
+   
+   
+   </form>
+  </div>
+  
+     
+  </div>
+
+{% endblock content%}

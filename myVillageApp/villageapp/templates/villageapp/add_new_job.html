@@ -1,0 +1,30 @@
+{% extends 'villageapp/base.html' %}
+{% load static %}
+
+{% block content%}
+
+<header class="container-fluid my-3 h3 text-center d-flex align-items-center justify-content-center">
+  <img src="{% static 'villageapp/images/logo.png' %}" style="width: 5rem; height: 5rem;" class="mx-5">
+  <p>Rajiv Nagar Jhiri Job Portal</p>
+</header>
+<div class="content-section">
+
+<form action="" method="POST">
+  
+   {% csrf_token %}
+   <fieldset class="form-group">
+     <legend class="border-bottom mb-4">Post a New Job : </legend>
+     {{form.as_p}}
+   </fieldset>
+   <div class="my-2 form-group">
+        <input type="submit" class="btn btn-success" value="Post Job"/>
+   </div>
+
+
+
+</form>
+
+   
+</div>
+
+{% endblock content%}

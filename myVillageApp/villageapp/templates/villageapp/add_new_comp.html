@@ -1,0 +1,24 @@
+{% extends 'villageapp/base.html' %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+{% block content%}
+<div class="content-section container">
+
+<form action="" method="POST" enctype="multipart/form-data">
+  
+   {% csrf_token %}
+   <fieldset class="form-group">
+     <legend class="border-bottom mb-4 text-info">Register Complaint</legend>
+     {{form.as_p}}
+   </fieldset>
+   <div class="my-2 form-group">
+        <input type="submit" class="btn btn-success" value="Register"/>
+   </div>
+
+
+
+</form>
+
+   
+</div>
+
+{% endblock content%}

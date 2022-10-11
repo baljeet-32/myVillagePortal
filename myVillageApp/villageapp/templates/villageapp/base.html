@@ -1,0 +1,280 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <script src="https://kit.fontawesome.com/6b052a4dad.js" crossorigin="anonymous"></script>
+    
+    {% comment %} CSS {% endcomment %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'villageapp/main.css'%}">
+    <title>Rajiv Nagar Jhiri
+    </title>
+</head>
+<body>
+  <header class="bg-light">
+ 
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="font-size:1.2rem">
+    <a class="navbar-brand" href="{% url 'village-home' %}">Rajiv Nagar Jhiri</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'village-home' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'village-about' %}">About</a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'village-notification' %}">Notifications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'village-complaints' %}">Complaints</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'village-jobs' %}">Jobs</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        {% if user.is_authenticated %}
+                
+                <a class="nav-item nav-link " href="{% url 'logout' %}">Logout</a>
+                <a class="nav-item nav-link " href="{%  url 'user-profile' %}">Profile</a>
+
+                {% else %}
+                <a class="nav-item nav-link " href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link " href="{% url 'register' %}">Register</a>
+        {% endif %}
+        <a id="google_element" class="ml-3"></a> 
+      </form>
+    </div>
+  </nav>
+</header>
+{% comment %}     
+     
+      <header class="my-10">
+        <div id="google_element" class="bg-light mx-2" ></div>
+       
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="font-size:1.3rem;">
+          <div class="container">
+            <a class="navbar-brand mr-4" href="{% url 'village-home' %}">Rajiv  Nagar Jhiri</a>
+            
+             
+      
+               
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+              <div class="navbar-nav mr-auto">
+                <a class="nav-item nav-link " href="{% url 'village-home' %}">Home</a>
+                <a class="nav-item nav-link " href="{% url 'village-about' %}">About</a>
+                <a class="nav-item nav-link " href="{% url 'village-notification' %}">Notifications</a>
+                <a class="nav-item nav-link " href="{% url 'village-jobs' %}">Jobs</a>
+                <a class="nav-item nav-link " href="{% url 'village-complaints' %}">Complaints</a>
+              </div>
+              <!-- Navbar Right Side -->
+              <div class="navbar-nav">
+                {% if user.is_authenticated %}
+                
+                <a class="nav-item nav-link " href="{% url 'logout' %}">Logout</a>
+                <a class="nav-item nav-link " href="{%  url 'user-profile' %}">Profile</a>
+
+                {% else %}
+                <a class="nav-item nav-link " href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link " href="{% url 'register' %}">Register</a>
+                {% endif %}
+               
+                
+              </div>
+             
+               
+            </div>
+          </div>
+        </nav>
+      </header>  {% endcomment %}
+
+
+
+
+
+
+
+{% comment %} Main block {% endcomment %}
+<main role="main" class="container-fluid my-10">
+  
+    <div>
+      {% if messages %}
+         {% for mes in messages %}
+             <div class="alert alert-{{mes.tags}}">{{mes}}</div>
+         {% endfor %}
+      {% endif %}
+      
+    </div>
+    {% block content %}
+    
+    
+    {% endblock content %}
+    {% comment %} <textarea id="text" cols="45" rows="3" class="container my-5" >
+      place Your Content Here for listening
+    </textarea> 
+     
+    <select id="voiceselection"></select>  {% endcomment %}
+</main>
+
+
+ 
+    {% comment %} CONTENT BLOCK {% endcomment %}
+
+   
+
+
+
+
+
+
+    {% comment %} 
+    FOOTER 
+    
+    
+    {% endcomment %}
+
+
+
+
+<!--  Contact US Section -->
+<!--Section: Contact v.2-->
+
+   
+    <!-- Footer -->
+<div class="bg-light navbar-light  p-1">
+<footer class="container-fluid text-center text-lg-start my-2">
+  <!-- Section: Social media -->
+  
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+
+    <div class="text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4 text-warning">
+            <i class="fas fa-gem me-3 text-warning"></i>Rajiv Nagar Jhiri
+          </h6>
+          <p>
+            Rajiv Nagar is a village from Hisar district of Haryana.As time is changing we are also trying to be computerized from the tedious and time - consuming paperwork
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase text-warning fw-bold mb-4">
+            Useful links
+          </h6>
+          <p>
+            <a href="{% url 'village-home' %}" class="text-reset">Home</a>
+          </p>
+          <p>
+            <a href="{% url 'village-about' %}" class="text-reset">About</a>
+          </p>
+          <p>
+            <a href="{% url 'village-notification' %}" class="text-reset">Notifications</a>
+          </p>
+          <p>
+            <a href="{% url 'village-jobs' %}" class="text-reset">Jobs</a>
+          </p>
+          <p>
+            <a href="{% url 'village-complaints' %}" class="text-reset">Complaints</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4 text-warning">
+            Contact
+          </h6>
+          <p><i class="fas fa-home me-3"></i> Rajiv Nagar Jhiri ,Hisar, Haryana</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            rajivnagar@gmail.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+          <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2022 Copyright:
+    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">rajivnagarjhiri.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+</div>
+<!-- Footer -->
+    {% comment %} JAVASCRIPT {% endcomment %}
+    <script src="https://kit.fontawesome.com/6b052a4dad.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+
+
+
+
+<script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate">
+
+</script>
+<script>
+  function loadGoogleTranslate(){
+    new google.translate.TranslateElement("google_element");
+  }
+</script>
+
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=pCaIJzVD"></script>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+ 
+ 
+ 
+
+ 
+<script>
+        //Populate voice selection dropdown
+        var voicelist = responsiveVoice.getVoices();
+        var vselect = $("#voiceselection");
+        $.each(voicelist, function() {
+                vselect.append($("<option />").val(this.name).text(this.name));
+        });
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends 'villageapp/base.html' %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+{% block content%}
+<div class="content-section">
+
+
+    <div class="border-top pt-3">
+        <p>You Have been Logged out. </p>
+        <a href="{% url 'login' %}" class="ml-3">Sign in Again</a></small>
+    </div>
+</div>
+
+{% endblock content%}

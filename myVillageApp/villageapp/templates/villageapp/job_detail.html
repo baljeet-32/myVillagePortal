@@ -1,0 +1,79 @@
+{% extends 'villageapp/base.html' %}
+{% load static %}
+{% block content%}
+<header class="container-fluid my-3 h3 text-center d-flex align-items-center justify-content-center">
+    <img src="{% static 'villageapp/images/logo.png' %}" style="width: 5rem; height: 5rem;" class="mx-5">
+    <p>Rajiv Nagar Jhiri Job Portal</p>
+  </header>
+<div class="container my-5">
+   
+   
+  
+     <div class="row my-3" style="font-size:1.2rem;">
+   
+
+       <div class ="card">
+       
+        <div class="card-body">
+          <h4 class="card-title text-center alert alert-info"> {{item.title}}</h4>
+          <p class="card-text"><b>Author </b>: {{item.author}}</p>
+          
+          <p class="card-text"><b>Description </b>: {{item.descritrion}}</p>
+          <p class="card-text"><b>Salary </b>: {{item.salary_desc}}</p>
+          <p class="card-text"><b>No. Opening  </b>: {{item.no_of_opening}}</p>
+          <p class="card-text"><b>Location  </b>: {{item.location}}</p>
+          <p class="card-text"><b>Contact Here  </b>: {{item.contact_details}}</p>
+          <p class="card-text"><b>Date Posted </b>: {{item.date_posted|date:"d - F - Y"}}</p>
+          {% if item.status  %}
+           
+          <p class="card-text"><b>Status </b>: <span class='btn btn-success'> Active </span></p>
+          {% else %}
+          <p class="card-text"><b>Status </b>: <span class='btn btn-warning'> Not Active now </span></p>
+          {% endif %}
+         
+          <div class="my-4 p-2">
+            <fieldset>
+              <legend class="text-muted border-bottom p-2">Actions: </legend>
+              <a href="{% url 'job_update' item.id %}" class="btn btn-outline-primary">Edit</a>
+              <a href="{% url 'job_delete' item.id %}" class="btn btn-outline-danger mx-3">Delete</a>
+            </fieldset>
+           
+          </div>
+          
+         
+         
+
+         
+        {% comment %} <a href="#" class="btn btn-success mx-3">Listen</a> {% endcomment %}
+        </div>
+
+
+       </div>
+    
+      
+   
+     </div>
+
+  
+    
+</div>
+
+<div class="container my-3 p-2 bg-light d-flex align-items-center justify-content-center flex-column">
+  <p class="h4 mt-3 text-primary">Paste your content in below box  which you want to listen : </p>
+  <textarea id="text" cols="50" rows="10" class="container bg-dark text-white my-5" >
+    Write your content to listen it.
+  </textarea> 
+   
+ <div class="bg-light d-flex align-items-center justify-content-center">
+   <p class="mx-2 text-info h4">Choose Language : </p>
+  <select id="voiceselection" class="btn btn-info mx-2"></select>
+  <input 
+    onclick="responsiveVoice.speak($('#text').val(),$('#voiceselection').val());" 
+    type="button" 
+    value="Read this for me" 
+    class="btn btn-success mx-2"
+  />
+ </div>
+
+</div>
+{% endblock content%}

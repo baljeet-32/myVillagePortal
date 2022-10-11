@@ -1,0 +1,28 @@
+{% extends 'villageapp/base.html' %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+{% block content%}
+<div class="content-section">
+
+
+  <div class="container">
+    
+<form action="" method="POST" class="p-1">
+  
+  {% csrf_token %}
+  <fieldset class="form-group">
+    <legend class="border-bottom mb-4 p-2 text-info">Add New Notifications</legend>
+    {{form.as_p}}
+  </fieldset>
+  <div class="my-2 form-group">
+       <input type="submit" class="btn btn-outline-success" value="Add Notification"/>
+  </div>
+
+
+
+</form>
+
+  </div>
+   
+</div>
+
+{% endblock content%}

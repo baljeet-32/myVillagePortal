@@ -1,0 +1,127 @@
+{% extends 'villageapp/base.html' %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+{% block content%}
+
+
+<div class="container p-4 my-5 border">
+  <h4 class='p-2 my-3 text-center bg-dark text-warning' style="font-size:2rem;">User Information</h4>
+  
+     <div class="container my-3  p-2">
+          
+              <div class="text-center">
+                   
+                   
+                      <img src="{{user.profile.image.url}}" style="width:10rem;height:10rem;border-radius:50%;">
+                    
+                    
+                      <div>
+                        <table class="table my-3 p-2">
+                          <tbody>
+                            <tr>
+                              <td> <p class="my-1"><span class="mx-4">Name : </span>{{user.first_name}} {{user.last_name}}</p></td>
+                            </tr>
+                            <tr>
+                              <td><p class="my-1"><span class="mx-4">Email : </span>{{user.email}}</p></td>
+                            </tr>
+                            <tr>
+                            <td>  <p class="my-1"><span class="mx-4">Username : </span>{{user.username}}</p></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                       
+                        
+                       
+                        
+                      </div>
+                    
+              </div>
+
+            
+          
+          
+              
+      </div>
+          
+         
+     
+    {% comment %} <div class="">
+      
+      <div class="media-body">
+        <h2 class="account-heading">{{user.username}}</h2>
+        <p class="text-secondary">{{user.email}}</p>
+      </div>
+    </div> {% endcomment %}
+    <!-- FORM HERE -->
+    <h4 class='container p-2 my-3 text-center bg-dark text-warning' style="font-size:2rem;">Update Information</h4>
+    <div class="container  p-2 my-4 d-flex align-items-center justify-content-center flex-column">
+      
+      <form method="POST" enctype="multipart/form-data" class="my-2 p-3" style="width:70%; font-size:1.2rem;">
+  
+        {% csrf_token %}
+        <fieldset class="form-group">
+          {% comment %} <legend class="alert alert-info text-center mb-4">Update Information</legend> {% endcomment %}
+          {{u_form.as_p}}
+          {{p_form.as_p}}
+        </fieldset>
+        <div class="my-2 form-group">
+             <input type="submit" class="btn btn-outline-primary" value="Save"/>
+        </div>
+     
+     
+     
+     </form>
+    </div>
+  </div>
+
+
+  {% if user.is_superuser %}
+  <div class="container my-3 p-2">
+  {% if data %}
+    <h2 class="my-2">Queries From Peoples : </h2>
+  <table class="table">
+    <thead class="bg-dark text-warning">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Message</th>
+        <th scope="col">More</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for item  in data  %}
+
+
+      <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.subject}}</td>
+        <td> 
+          <form action="{% url 'deletequery' item.id %}" method='POST' class='d-inline'>
+            {% csrf_token %}
+            <input type ="submit" class='btn btn-danger' value="Delete"/>
+        </form>
+        
+        </td>
+      </tr>
+    
+
+
+     
+  
+  {% endfor %}
+ 
+</tbody>
+</table>
+
+  {% else %}
+  
+  <h3>No Query found </h3>
+  {% endif %}
+
+
+</div>
+
+  {% endif%}
+{% endblock content%}

@@ -1,0 +1,71 @@
+{% extends 'villageapp/base.html' %}
+{% block content%}
+<div class="container-fluid  m-1 p-2 d-flex align-items-center justify-content-center">
+   
+   
+  
+     
+   
+
+       <div class ="card" style="width:80%;">
+       
+        <div class="card-body">
+          <h5 class="card-title text-center alert alert-info">{{item.title}}</h5>
+          <p class="card-text"><b>Author </b>: {{item.author}}</p>
+          <p class="card-text"><b>Category </b>: {{item.category}}</p>
+          <p class="card-text"><b>Date Posted </b>: {{item.date_posted|date:"d - F - Y"}}</p>
+          {% if item.status  %}
+           
+          <p class="card-text"><b>Status </b>: <span class='btn btn-success'> Solved </span></p>
+          {% else %}
+          <p class="card-text"><b>Status </b>: <span class='btn btn-warning'> Pending </span></p>
+          {% endif %}
+          <p class="card-text"><b>Description </b>: {{item.descritrion}}</p>
+         <div class="my-4">
+             <p class="card-text"><b>Complaint Related Images :</b> </p>
+            <img  src="{{item.image.url}}" style="width:10rem; height:10rem;" >
+         </div>
+          
+         
+         <div class="my-4 p-2">
+           <fieldset>
+             <legend class="text-info border-bottom p-2">Actions: </legend>
+             <a href="{% url 'comp_update' item.id %}" class="btn btn-outline-primary">Edit</a>
+          <a href="{% url 'comp_delete' item.id %}" class="btn btn-outline-danger mx-3">Delete</a>
+           </fieldset>
+          
+         </div>
+
+         
+        {% comment %} <a href="#" class="btn btn-success mx-3">Listen</a> {% endcomment %}
+        </div>
+
+
+       </div>
+    
+      
+   
+     
+
+  
+    
+</div>
+<div class="container my-3 p-2 bg-light d-flex align-items-center justify-content-center flex-column">
+  <p class="h4 mt-3 text-primary">Paste your content in below box  which you want to listen : </p>
+  <textarea id="text" cols="50" rows="10" class="container bg-dark text-white my-5" >
+    Write your content to listen it.
+  </textarea> 
+   
+ <div class="bg-light d-flex align-items-center justify-content-center">
+   <p class="mx-2 text-info h4">Choose Language : </p>
+  <select id="voiceselection" class="btn btn-info mx-2"></select>
+  <input 
+    onclick="responsiveVoice.speak($('#text').val(),$('#voiceselection').val());" 
+    type="button" 
+    value="Read this for me" 
+    class="btn btn-success mx-2"
+  />
+ </div>
+
+</div>
+{% endblock content%}

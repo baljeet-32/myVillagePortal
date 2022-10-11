@@ -1,0 +1,32 @@
+{% extends 'villageapp/base.html' %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+{% block content%}
+<div class="content-section container">
+
+<div class="container  m-3 p-2">
+  <form action="" method="POST">
+  
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4 alert alert-danger">Delete Notifications</legend>
+      <h5 class="text-info">Are you sure to delete ...  ??  </h5>
+       {% comment %} <a  href="{% url 'notif_detail' object.id %}" class="mx-3 border-bottom text-warning ">{{object.title}}</a> {% endcomment %}
+    </fieldset>
+    <div class="my-2 form-group">
+         <input type="submit" class="btn btn-outline-danger" value="Yes , Delete"/>
+         <a class="btn btn-outline-success" href="{% url 'notif_detail' object.id %}">Cancel</a>
+    </div>
+ 
+ 
+ 
+ </form>
+</div>
+
+   
+</div>
+<textarea id="text" cols="45" rows="3" class="container my-5" >
+  place Your Content Here for listening
+</textarea> 
+ 
+<select id="voiceselection"></select> 
+{% endblock content%}
